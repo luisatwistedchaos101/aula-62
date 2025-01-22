@@ -1,20 +1,5 @@
-import icarusBk from "../assets/icarus-bk.jpeg";
 import hearth from "../assets/hearth-liked.svg";
-
-const musics = [
-  {
-    image: icarusBk,
-    title: "Música de amor nunca mais",
-    artists: "BK, Luccas Carlos, Nansy Silvvz, Gigantes",
-    liked: true
-  },
-  {
-    image: icarusBk,
-    title: "Outra Música",
-    artists: "Artista 1, Artista 2",
-    liked: true
-  }
-];
+import musics from "../mocks/music";
 
 export default function Playlist({ showPlaylist }) {
   if (!showPlaylist) {
