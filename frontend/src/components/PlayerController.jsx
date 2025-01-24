@@ -1,50 +1,52 @@
-import shuffle from "../assets/shuffle.svg";
-import skip from "../assets/skip.svg";
-import pause from "../assets/pause.svg";
-import repeat from "../assets/repeat.svg";
+import ProgressBar from "./ProgressBar";
+import PlayerController from "./PlayerController";
+import icarus from "../assets/icarus-bk.jpeg";
 
-export default function PlayerController(props) {
+export default function NowPlaying(props) {
   return (
-    <div className="flex justify-between items-center">
-      {props.showControlButtons && (
-        <>
-          <img
-            className="w-6 h-6"
-            src={shuffle}
-            alt="Ícone de aleatorizar a playlist"
-          />
-          <div className="w-10 h-10 rounded-full bg-slate-900 p-2 flex items-center justify-center">
-            <img
-              className="w-full h-full"
-              src={skip}
-              alt="Ícone de avançar uma música"
-            />
-          </div>
-        </>
-      )}
+    <div
+      className={`${
+        !props.showProgressBar &&
+        `fixed bottom-0 left-0 w-full flex flex-row items-center justify-between p-4 rounded-custom-glass bg-glass-light shadow-custom-glass backdrop-blur-md`
+      }`}
+    >
       <div
         className={`${
-          props.showControlButtons ? "w-20 h-20 p-6" : "w-12 h-12 p-3"
-        } rounded-full bg-white flex items-center justify-center`}
+          !props.showProgressBar && "flex flex-row items-center space-x-4"
+        }`}
       >
-        <img className="w-full h-full" src={pause} alt="Ícone de pausar" />
+        <img
+          className={`${
+            props.showProgressBar
+              ? "rounded-3xl w-full max-w-xs mb-4"
+              : "rounded-2xl w-16 sm:w-24 md:w-32 lg:w-40 xl:w-48"
+          }`}
+          src={icarus}
+          alt="Music icon"
+        />
+        <div>
+          <h2
+            className={`font-bold ${
+              props.showProgressBar ? "text-xl" : "text-base"
+            }`}
+          >
+            Música de amor nunca mais
+          </h2>
+          <h3
+            className={`${
+              props.showProgressBar ? "text-lg" : "text-sm"
+            }`}
+          >
+            BK, Luccas Carlos, Nansy Silvvz, Gigantes
+          </h3>
+        </div>
       </div>
-      {props.showControlButtons && (
-        <>
-          <div className="w-10 h-10 rounded-full bg-slate-900 p-2 flex items-center justify-center rotate-180">
-            <img
-              className="w-full h-full"
-              src={skip}
-              alt="Ícone de voltar uma música"
-            />
-          </div>
-          <img
-            className="w-6 h-6"
-            src={repeat}
-            alt="Ícone de repetir a playlist"
-          />
-        </>
-      )}
+
+      {/* Mostrar PlayerController */}
+      <PlayerController showControlButtons={props.showProgressBar} />
+
+      {/* Barra de progresso, se necessário */}
+      {props.showProgressBar && <ProgressBar />}
     </div>
   );
 }

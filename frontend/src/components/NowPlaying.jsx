@@ -2,6 +2,8 @@ import ProgressBar from "./ProgressBar";
 import PlayerController from "./PlayerController";
 import icarus from "../assets/icarus-bk.jpeg";
 
+
+
 export default function NowPlaying(props) {
   return (
     <div
@@ -15,13 +17,18 @@ export default function NowPlaying(props) {
           !props.showProgressBar && "flex flex-row items-center space-x-4"
         }`}
       >
-        <img
-          className={`${
-            props.showProgressBar ? "rounded-3xl w-full mb-4" : "rounded-2xl w-16"
-          }`}
-          src={icarus}
-          alt="Music icon"
-        />
+    <img
+  className={`
+    w-full 
+    min-w-[320px] min-h-[320px]  // Tamanho mínimo para celular
+    max-w-[1920px] max-h-[1080px] // Tamanho máximo para TV
+    rounded-2xl 
+    sm:w-24 md:w-32 lg:w-40 xl:w-48
+  `}
+  src={icarus}
+  alt="Music icon"
+/>
+
         <div>
           <h2
             className={`font-bold ${props.showProgressBar ? "text-xl" : "text-base"}`}
@@ -38,3 +45,4 @@ export default function NowPlaying(props) {
     </div>
   );
 }
+
